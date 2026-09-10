@@ -12,6 +12,7 @@ import {
   Popover,
   OverlayTrigger,
   ProgressBar,
+  Tooltip
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
@@ -290,23 +291,33 @@ export function GFIHeader() {
       <Container
         style={{ marginRight: '5px', marginLeft: '5px', maxWidth: '100vw' }}
       >
-        <LinkContainer
-          to="/"
-          onClick={() => {
-            hideAccountNav();
-          }}
+        <OverlayTrigger
+          placement="bottom"
+          overlay={
+            <Tooltip id="gfi-logo-tooltip">
+              GFI = Good First Issue — beginner-friendly issues recommended
+              for newcomers to open source.
+            </Tooltip>
+          }
         >
-          <Navbar.Brand>
-            <img
-              alt=""
-              src={navLogo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{' '}
-            GFI-Bot
-          </Navbar.Brand>
-        </LinkContainer>
+          <LinkContainer
+            to="/"
+            onClick={() => {
+              hideAccountNav();
+            }}
+          >
+            <Navbar.Brand>
+              <img
+                alt="GFI-Bot logo"
+                src={navLogo}
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+              />{' '}
+              GFI-Bot
+            </Navbar.Brand>
+          </LinkContainer>
+        </OverlayTrigger>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav>
